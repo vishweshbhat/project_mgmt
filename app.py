@@ -23,33 +23,55 @@ def index():
 @app.route('/add_project', methods=['GET', 'POST'])
 def add_project():
     if request.method == 'POST':
-        name = request.form['name']
-        description = request.form['description']
-        status = request.form['status']
-        storage_location = request.form['storage_location']
-        
+        # Get form data safely using .get() method
+        name = request.form.get('name')
+        description = request.form.get('description')
+        status = request.form.get('status')
+        storage_location = request.form.get('storage_location')
+        location = request.form.get('location', 'default_value')  # Default value if location is missing
+
+        # Debug: Print form data
+        print(f"Received data - Name: {name}, Description: {description}, Status: {status}, Storage Location: {storage_location}, Location: {location}")
+
+        # Validate required fields
+        if not name or not description or not status or not storage_location:
+            return "Missing required field", 400  # Return a response indicating the issue
+
+        # Insert data into the database
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO projects(name, description, status, storage_location) VALUES (%s, %s, %s, %s)",
-                    (name, description, status, storage_location))
+        cur.execute("INSERT INTO projects(name, description, status, storage_location, location) VALUES (%s, %s, %s, %s, %s)",
+                    (name, description, status, storage_location, location))
         mysql.connection.commit()
-        return redirect('/')
+
+        return redirect('/')  # Redirect to home page after adding the project
     
     return render_template('add_proj.html')
 
-# Edit project route (edit status)
-@app.route('/update_status/<int:id>', methods=['GET', 'POST'])
-def update_status(id):
-    if request.method == 'POST':
-        status = request.form['status']
-        cur = mysql.connection.cursor()
-        cur.execute("UPDATE projects SET status = %s WHERE id = %s", (status, id))
-        mysql.connection.commit()
-        return redirect('/')
-    
+# Edit project route (optional, based on your app's requirement)
+@app.route('/edit_project/<int:id>', methods=['GET', 'POST'])
+def edit_project(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM projects WHERE id = %s", (id,))
-    project = cur.fetchone()
-    return render_template('edit_proj.html', project=project)
 
+    # Handle GET request to fetch project details
+    if request.method == 'GET':
+        cur.execute("SELECT * FROM projects WHERE id = %s", (id,))
+        project = cur.fetchone()
+        return render_template('edit_proj.html', project=project)
+
+    # Handle POST request to update project details
+    if request.method == 'POST':
+        name = request.form.get('name')
+        description = request.form.get('description')
+        status = request.form.get('status')
+        storage_location = request.form.get('storage_location')
+        location = request.form.get('location', 'default_value')  # Default value if location is missing
+
+        cur.execute("UPDATE projects SET name = %s, description = %s, status = %s, storage_location = %s, location = %s WHERE id = %s",
+                    (name, description, status, storage_location, location, id))
+        mysql.connection.commit()
+
+        return redirect('/')  # Redirect to home page after editing the project
+
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
