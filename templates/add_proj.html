@@ -1,20 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add New Project</h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
 
-{% block content %}
-<h2 class="mb-4">Add New Project</h2>
-<form method="POST" action="{{ url_for('add_project') }}">
-    <div class="mb-3">
-        <label for="name" class="form-label">Project Name</label>
-        <input type="text" class="form-control" id="name" name="name" required>
-    </div>
-    <div class="mb-3">
-        <label for="percentage" class="form-label">% Completed</label>
-        <input type="number" class="form-control" id="percentage" name="percentage" min="0" max="100" value="0">
-    </div>
-    <div class="mb-3">
-        <label for="storage" class="form-label">Storage Location</label>
-        <input type="text" class="form-control" id="storage" name="storage">
-    </div>
-    <button type="submit" class="btn btn-primary">Add Project</button>
-</form>
-{% endblock %}
+    <main>
+        <form action="/add_project" method="POST">
+            <label for="name">Project Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="description">Project Description</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="status">Project Status</label>
+            <input type="text" id="status" name="status" required>
+            
+            <label for="storage_location">Storage Location</label>
+            <input type="text" id="storage_location" name="storage_location" required>
+            
+            <button type="submit">Add Project</button>
+        </form>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit Project</h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <form action="/update_status/{{ project['id'] }}" method="POST">
+            <label for="name">Project Name</label>
+            <input type="text" id="name" name="name" value="{{ project['name'] }}" disabled>
+            
+            <label for="description">Project Description</label>
+            <textarea id="description" name="description" disabled>{{ project['description'] }}</textarea>
+            
+            <label for="status">Project Status</label>
+            <input type="text" id="status" name="status" value="{{ project['status'] }}" required>
+            
+            <label for="storage_location">Storage Location</label>
+            <input type="text" id="storage_location" name="storage_location" value="{{ project['storage_location'] }}" disabled>
+            
+            <button type="submit">Update Status</button>
+        </form>
+    </main>
+
+</body>
+</html>
