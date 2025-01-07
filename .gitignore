@@ -7,7 +7,7 @@ venv/
 .env
 
 # MySQL
-*.sql
+
 
 # IDEs
 .vscode/
