@@ -1,0 +1,115 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #e6e2d3; 
+    color: #c4b7a6; 
+    transition: background-color 0.5s ease; 
+}
+
+/* Heading Styling */
+h1 {
+    text-align: center;
+    color: #69936c; 
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 10px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+table th, table td {
+    border: 1px solid #c4b7a6; 
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #ae9b74; 
+    color: #ffffff; 
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; 
+}
+
+tr:hover {
+    background-color: #ece0c8; 
+    cursor: pointer;
+    transform: scale(1.02); /* Slight zoom on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Input Fields Styling */
+input[type="text"], input[type="date"], select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #c4b7a6; 
+    border-radius: 10px; 
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #69936c; 
+    background-color: #e6e2d3; 
+    transition: box-shadow 0.4s ease, transform 0.2s ease; /* Smooth focus effect */
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #69936c; /* Greenish border on focus */
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 10px rgba(105, 147, 108, 0.5); /* Green glow */
+    transform: scale(1.05); /* Slight zoom */
+}
+
+/* Button Styling */
+button {
+    background-color: #69936c;
+    color: #ffffff; 
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+button:hover {
+    background-color: #5a835d; 
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Form Button Alignment */
+form button[type="submit"] {
+    display: block;
+    margin: 20px auto;
+}
+
+/* Smooth Appearance on Load */
+body, table, input, button {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Keyframes for Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 5;
+    }
+}
+
