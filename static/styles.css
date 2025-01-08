@@ -8,15 +8,15 @@
 /* Body Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    color: #333;
+    background-color: #e1ffd8;
+    color: #050e04;
     line-height: 1.6;
     padding: 20px;
 }
 
 /* Header Styling */
 header {
-    background-color: #4CAF50;
+    background-color: #050e04;
     color: #fff;
     padding: 20px 0;
     text-align: center;

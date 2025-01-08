@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edit_style.css">
     <title>Edit Project</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
 </head>
 <body>
-    <header>
+    <div class="edit-project-container">
         <h1>Edit Project</h1>
-        <nav>
-            <a href="/">Home</a>
-        </nav>
-    </header>
+        <form action="/update_project" method="POST">
+            <div class="form-group">
+                <label for="project-title">Project Title</label>
+                <input type="text" id="project-title" name="project_title" placeholder="Enter project title" required>
+            </div>
 
-    <main>
-        <form action="/update_status/{{ project['id'] }}" method="POST">
-            <label for="name">Project Name</label>
-            <input type="text" id="name" name="name" value="{{ project['name'] }}" disabled>
-            
-            <label for="description">Project Description</label>
-            <textarea id="description" name="description" disabled>{{ project['description'] }}</textarea>
-            
-            <label for="status">Project Status</label>
-            <input type="text" id="status" name="status" value="{{ project['status'] }}" required>
-            
-            <label for="storage_location">Storage Location</label>
-            <input type="text" id="storage_location" name="storage_location" value="{{ project['storage_location'] }}" disabled>
-            
-            <button type="submit">Update Status</button>
+            <div class="form-group">
+                <label for="project-description">Project Description</label>
+                <textarea id="project-description" name="project_description" placeholder="Enter project description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="project-status">Project Status</label>
+                <input type="number" id="project-title" name="project_title" placeholder="Enter project title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="storage-location">Storage Location</label>
+                <input type="text" id="project-title" name="project_title" placeholder="Enter project location" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Save Changes</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='/projects'">Cancel</button>
+            </div>
         </form>
-    </main>
-
+    </div>
 </body>
 </html>
