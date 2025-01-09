@@ -1,4 +1,3 @@
-<!-- index.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -15,8 +14,19 @@
     <h2>Projects List</h2>
     <ul>
         {% for project in projects %}
-            <li>{{ project[1] }} - {{ project[2] }} - Status: {{ project[3] }} - Storage Location: {{ project[4] }} 
-            <a href="/proj/{{ project[0] }}">View Details</a></li>
+            <li>
+                {{ project[1] }} - {{ project[2] }} - Status: {{ project[3] }} - Storage Location: {{ project[4] }} 
+                <a href="/proj/{{ project[0] }}">View Details</a>
+                <form action="/delete_project/{{ project[0] }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
+
+    <script>
+        function confirmDeletion() {
+            return confirm('Are you sure you want to delete this project?');
+        }
+    </script>
 {% endblock %}

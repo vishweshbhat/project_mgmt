@@ -47,6 +47,22 @@ def add_project():
     
     return render_template('add_proj.html')
 
+#added the delete functionality
+@app.route('/delete_project/<int:project_id>', methods=['POST'])
+def delete_project(project_id):
+    # Use the MySQL connection from Flask-MySQLdb
+    cur = mysql.connection.cursor()
+    
+    # Execute the delete query
+    cur.execute("DELETE FROM projects WHERE id = %s", (project_id,))
+    
+    # Commit the changes and close the cursor
+    mysql.connection.commit()
+    cur.close()
+    
+    # Redirect to the home page after deleting
+    return redirect('/')
+
 # Edit project route (optional, based on your app's requirement)
 @app.route('/edit_project/<int:id>', methods=['GET', 'POST'])
 def edit_project(id):
@@ -74,4 +90,4 @@ def edit_project(id):
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
