@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edit_style.css">
+    <title>Edit Project</title>
+</head>
+<body>
+    <div class="edit-project-container">
+        <h1>Edit Project</h1>
+        <form action="/update_project" method="POST">
+          
+            <div class="form-group">
+                <label for="project-id">Project ID</label>
+                <input type="text" id="project-id" name="project_id" value="{{ project_id }}" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-title">Project Title</label>
+                <input type="text" id="project-title" name="project_title" placeholder="Enter project title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-description">Project Description</label>
+                <textarea id="project-description" name="project_description" placeholder="Enter project description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-status">Project Status</label>
+                <input type="number" id="project-status" name="project_status" placeholder="Enter project status" required>
+            </div>
+
+            <div class="form-group">
+                <label for="storage-location">Storage Location</label>
+                <input type="text" id="storage-location" name="storage_location" placeholder="Enter storage location" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Save Changes</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='/projects'">Cancel</button>
+            </div>
+        </form>
+
+        <form action="/delete_project" method="POST" class="delete-form">
+            <h2>Delete a Project</h2>
+            <div class="form-group">
+                <label for="delete-id">Enter Project ID to Delete</label>
+                <input type="number" id="delete-id" name="delete_id" placeholder="Enter project ID" required>
+            </div>
+            <button type="submit" class="btn-delete">Delete Project</button>
+        </form>
+    </div>
+</body>
+</html>
